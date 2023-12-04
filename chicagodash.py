@@ -76,8 +76,11 @@ fig.update_geos(fitbounds="locations")
 # Load your data
 df = pd.read_csv('chicagolibrary.csv')  # Replace with your actual file path
 
-# Exclude the last two rows which contain longitude and latitude data
-df = df.iloc[:-2, :-1]  # Also exclude the 'Year' column
+# Exclude the rows which contain longitude, latitude data, and renovation years
+df = df.iloc[:-3, :]
+
+# Filter out the data for the years 2020 and 2023
+df = df[~df['Year'].isin([2020, 2023])]
 
 # Ensure the months are in the correct order
 months_order = [
@@ -104,16 +107,15 @@ fig2 = px.density_heatmap(
     y='BRANCH',
     z='Visitors_Log',
     category_orders={"BRANCH": months_order},
-    title='Heat Map of Monthly Visitors by Branch in Chicago Libraries',
-    labels={'BRANCH': 'Month'},
+    title='Heat Map of Monthly Visitors by Branch in Chicago Libraries (Excluding 2020 and 2023)',
     color_continuous_scale='YlGnBu'  # This is a perceptually uniform color scale
 )
-
-fig2.update_layout(height=600)
-
+fig2.update_layout(
+    height= 600
+)
 # Improve the hover text by mapping the logarithmic values back to the original visitor counts
 fig2.update_traces(
-    hovertemplate=df_melted.apply(lambda row: f'Branch: {row["Branch"]}<br>Month: {row["BRANCH"]}<br>Visitors: {int(row["Visitors"])}', axis=1)
+    hovertemplate=df_melted.apply(lambda row: f'Branch: {row["Branch"]}<br>Month: {row["BRANCH"]}<br>Visitors: {int(np.exp(row["Visitors_Log"]) - 1)}', axis=1)
 )
 
 
