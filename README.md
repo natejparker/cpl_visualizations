@@ -11,4 +11,8 @@ The first visualization "Monthly Heatmap" shows the count of visitors for a bran
 
 The second visualization "Renovation Year" shows the last year that several branches had a renovation. This was developed after feedback was provided that a way to determine which branch is most in need of renovations would be helpful. This visualization has a way to filter which years were last renovated before a certain year, and reveals that North Austin is most overdue for a a renovation.
 
+![Screenshot 2023-12-05 004659](https://github.com/rahuldmello24/ds_4200_project/assets/122840422/646b6dc6-237e-48da-86eb-735b86491e8c)
+
 The third visualization "Geographic Rendering" visualizes the location of Chicago Public Libraries and the number of visitors they bring in each year. These libraries can then be compared by location, and can be used to determine what branches are most likely to receive an influx of visitors in the event of a closure for renovation.
+
+![Screenshot 2023-12-05 004811](https://github.com/rahuldmello24/ds_4200_project/assets/122840422/5adfa35a-8151-49b3-bca1-442c19c369d3)
